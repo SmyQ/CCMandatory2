@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CameraVisualizations.UserControls.ucPhone"
+﻿<UserControl xmlns:my="clr-namespace:Microsoft.Surface.Presentation.Controls;assembly=Microsoft.Surface.Presentation"  x:Class="CameraVisualizations.UserControls.ucPhone"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,13 +17,13 @@
                Content="Model" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Bottom" Margin="169,0,167,42" Width="300" FontSize="12" />
-        <Button Name="btnPin" Width="150px" Height="30px" VerticalAlignment="Bottom" Margin="20" Click="pinClick">
+        <my:SurfaceButton Name="btnPin" Width="150px" Height="30px" VerticalAlignment="Bottom" Margin="20" Click="pinClick">
             Pin
-        </Button>
+        </my:SurfaceButton>
 
-        <Button Name="btnUnpin"  Width="150px" Height="30px" VerticalAlignment="Bottom" Margin="20" Click="unpinClick" Visibility="Hidden">
+        <my:SurfaceButton Name="btnUnpin"  Width="150px" Height="30px" VerticalAlignment="Bottom" Margin="20" Click="unpinClick" Visibility="Hidden">
             Unpin
-        </Button>
+        </my:SurfaceButton>
 
     </Grid>
 </UserControl>

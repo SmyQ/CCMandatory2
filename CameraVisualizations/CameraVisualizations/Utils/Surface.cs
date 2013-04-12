@@ -14,7 +14,7 @@ namespace CameraVisualizations.Utils
     {
         private static List<Phone> _phones = new List<Phone>();
 
-        private static ObservableCollection<PhoneScatterViewItem> _userControls = new ObservableCollection<PhoneScatterViewItem>();
+        private static ObservableCollection<CustomScatterViewItem> _userControls = new ObservableCollection<CustomScatterViewItem>();
 
         static Surface() 
         { 
@@ -23,7 +23,8 @@ namespace CameraVisualizations.Utils
                 Name = "Samsung Galaxy S Plus",
                 Pined = false,
                 ImgSrc = "iconSamsung.png",
-                BrushColor = SurfaceColors.Accent1Brush
+                BrushColor = SurfaceColors.Accent1Brush,
+                IpAddr = "192.168.0.1"
             }); 
 
             Surface.Phones.Add(new Phone() {
@@ -31,7 +32,8 @@ namespace CameraVisualizations.Utils
                 Name = "HTC Desire S",
                 Pined = false,
                 ImgSrc = "iconHTC.png",
-                BrushColor = SurfaceColors.Accent2Brush
+                BrushColor = SurfaceColors.Accent2Brush,
+                IpAddr = "192.168.0.2"
             });
         }
 
@@ -48,7 +50,7 @@ namespace CameraVisualizations.Utils
             }
         }
 
-        public static ObservableCollection<PhoneScatterViewItem> UserControls
+        public static ObservableCollection<CustomScatterViewItem> UserControls
         {
             get
             {

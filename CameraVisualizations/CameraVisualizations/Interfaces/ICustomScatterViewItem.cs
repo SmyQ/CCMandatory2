@@ -6,8 +6,8 @@ using CameraVisualizations.Utils;
 
 namespace CameraVisualizations.Interfaces
 {
-    interface IPhotoProvider
+    interface ICustomScatterViewItem
     {
-        List<PhotoScatterViewItem> GetPhotos(Phone phone);
+        Phone Phone { get; set; }
     }
 }

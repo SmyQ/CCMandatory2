@@ -13,6 +13,7 @@ namespace CameraVisualizations.Utils
         public string Name { get; set; }
         public Brush BrushColor { get; set; }
         public String ImgSrc { get; set; }
+        public String IpAddr { get; set; }
 
     }
 }

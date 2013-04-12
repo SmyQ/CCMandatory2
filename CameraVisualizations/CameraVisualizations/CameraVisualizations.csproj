@@ -56,10 +56,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\ICustomScatterViewItem.cs" />
     <Compile Include="Interfaces\IPhotoProvider.cs" />
+    <Compile Include="Providers\AndroidPhotoProvider.cs" />
     <Compile Include="UserControls\ucPhone.xaml.cs">
       <DependentUpon>ucPhone.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ucPhoto.xaml.cs">
+      <DependentUpon>ucPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CustomScatterViewItem.cs" />
+    <Compile Include="Utils\PhotoScatterViewItem.cs" />
     <Compile Include="Utils\PhoneScatterViewItem.cs" />
     <Compile Include="Utils\Surface.cs" />
     <Page Include="CameraVisualization.xaml">
@@ -83,6 +90,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\ucPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ucPhoto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,12 +123,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\pedo.jpg" />
     <Resource Include="Resources\iconHTC.png" />
     <Resource Include="Resources\iconSamsung.png" />
-    <Resource Include="Resources\GalaxyS.png" />
-    <Content Include="Resources\icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="CameraVisualizations.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

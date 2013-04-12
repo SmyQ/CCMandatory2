@@ -7,11 +7,8 @@ using CameraVisualizations.Interfaces;
 
 namespace CameraVisualizations.Utils
 {
-    public class PhoneScatterViewItem : CustomScatterViewItem
+    public class CustomScatterViewItem : ScatterViewItem, ICustomScatterViewItem
     {
-        public PhoneScatterViewItem()
-        {
-            CanScale = false;
-        }
+        public Phone Phone { get; set; }
     }
 }

@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CameraVisualizations.Utils;
+using CameraVisualizations.Interfaces;
+using CameraVisualizations.Providers;
 
 namespace CameraVisualizations.UserControls
 {
@@ -33,6 +35,12 @@ namespace CameraVisualizations.UserControls
             btnUnpin.Visibility = Visibility.Visible;
 
             Phone.Pined = true;
+
+            IPhotoProvider photoProvider = new AndroidPhotoProvider();
+            foreach(PhotoScatterViewItem item in photoProvider.GetPhotos(Phone))
+            {
+                Surface.UserControls.Add(item);
+            }
         }
 
         private void unpinClick(object sender, RoutedEventArgs e)
@@ -41,8 +49,15 @@ namespace CameraVisualizations.UserControls
             btnUnpin.Visibility = Visibility.Hidden;
 
             Phone.Pined = false;
-            var ucToDel = Surface.UserControls.Where(u => u.Phone == Phone).FirstOrDefault();
-            Surface.UserControls.Remove(ucToDel);
+            //var ucToDel = Surface.UserControls.Where(u => u.Phone == Phone).FirstOrDefault();
+            //Surface.UserControls.Remove(ucToDel);
+
+            IEnumerable<CustomScatterViewItem> items = Surface.UserControls.Where(x => x.Phone == Phone && x is PhotoScatterViewItem);
+
+            //foreach (CustomScatterViewItem item in items)
+            //{
+            //    Surface.UserControls.Remove(item);
+            //}
         }
     }
 }
