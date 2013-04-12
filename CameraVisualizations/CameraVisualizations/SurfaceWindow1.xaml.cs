@@ -30,7 +30,7 @@ namespace CameraVisualizations
         /// </summary>
         public SurfaceWindow1()
         {
-            InitializeComponent();
+            InitializeComponent(); // Kamil
 
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
