@@ -39,7 +39,7 @@ namespace CameraVisualizations.UserControls
             IPhotoProvider photoProvider = new AndroidPhotoProvider();
             foreach(PhotoScatterViewItem item in photoProvider.GetPhotos(Phone))
             {
-                Surface.UserControls.Add(item);
+                Helper.Surface.UserControls.Add(item);
             }
         }
 
@@ -49,14 +49,36 @@ namespace CameraVisualizations.UserControls
             btnUnpin.Visibility = Visibility.Hidden;
 
             Phone.Pined = false;
-            //var ucToDel = Surface.UserControls.Where(u => u.Phone == Phone).FirstOrDefault();
+            //var ucToDel = Surface.UserControls.Where(u => u.Phone == Phone && u is PhoneScatterViewItem).FirstOrDefault();
             //Surface.UserControls.Remove(ucToDel);
 
-            IEnumerable<CustomScatterViewItem> items = Surface.UserControls.Where(x => x.Phone == Phone && x is PhotoScatterViewItem);
+            List<CustomScatterViewItem> items = Helper.Surface.UserControls.Where(x => x.Phone == Phone).ToList();
 
-            //foreach (CustomScatterViewItem item in items)
+            try
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    CustomScatterViewItem item = items[i];
+                    Helper.Surface.UserControls.Remove(item);
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+
+            
+
+            //try
             //{
-            //    Surface.UserControls.Remove(item);
+            //    foreach (CustomScatterViewItem item in items)
+            //    {
+            //        Helper.Surface.UserControls.Remove(item);
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
             //}
         }
     }

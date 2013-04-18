@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Name="gridMain" Background="Aqua">
-            <Image Name="imgPhoto" Width="250px" Height="250px" />
+            <Image Name="imgPhoto" Width="250px" Height="250px" Margin="20px" />
     </Grid>
 </UserControl>

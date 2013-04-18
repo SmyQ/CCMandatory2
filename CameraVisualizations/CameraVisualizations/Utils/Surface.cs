@@ -7,18 +7,19 @@ using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace CameraVisualizations.Utils
 {
-    public static class Surface
+    public class Surface : INotifyPropertyChanged
     {
-        private static List<Phone> _phones = new List<Phone>();
+        private  List<Phone> _phones = new List<Phone>();
 
-        private static ObservableCollection<CustomScatterViewItem> _userControls = new ObservableCollection<CustomScatterViewItem>();
+        private  ObservableCollection<CustomScatterViewItem> _userControls = new ObservableCollection<CustomScatterViewItem>();
 
-        static Surface() 
+        public Surface() 
         { 
-            Surface.Phones.Add(new Phone() {
+            Phones.Add(new Phone() {
                 Id = 1,
                 Name = "Samsung Galaxy S Plus",
                 Pined = false,
@@ -27,7 +28,7 @@ namespace CameraVisualizations.Utils
                 IpAddr = "192.168.0.1"
             }); 
 
-            Surface.Phones.Add(new Phone() {
+            Phones.Add(new Phone() {
                 Id = 2,
                 Name = "HTC Desire S",
                 Pined = false,
@@ -37,7 +38,7 @@ namespace CameraVisualizations.Utils
             });
         }
 
-        public static List<Phone> Phones 
+        public List<Phone> Phones 
         { 
             get 
             {
@@ -50,7 +51,7 @@ namespace CameraVisualizations.Utils
             }
         }
 
-        public static ObservableCollection<CustomScatterViewItem> UserControls
+        public ObservableCollection<CustomScatterViewItem> UserControls
         {
             get
             {
@@ -60,7 +61,17 @@ namespace CameraVisualizations.Utils
             set
             {
                 _userControls = value;
+                NotifyPropertyChanged("UserControls");
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string prop)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
     }
 }

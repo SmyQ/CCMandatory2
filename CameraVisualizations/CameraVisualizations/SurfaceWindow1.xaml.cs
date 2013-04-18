@@ -37,7 +37,20 @@ namespace CameraVisualizations
 
             InitializeDefinitions();
 
-            scatterView.ItemsSource = Surface.UserControls;
+            scatterView.ItemsSource = Helper.Surface.UserControls;
+            
+        }
+
+        void scatterView_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            //throw new NotImplementedException();
+            int a = 1;
+        }
+
+        void scatterView_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            int b = 2;
+            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -108,7 +121,7 @@ namespace CameraVisualizations
 
         private void InitializeDefinitions()
         {
-            foreach (Phone p in Surface.Phones)
+            foreach (Phone p in Helper.Surface.Phones)
             {
                 TagVisualizationDefinition tagDef =
                    new TagVisualizationDefinition();
@@ -140,7 +153,7 @@ namespace CameraVisualizations
             ucPhone ucPhoneRep = camera.ucPhoneRep;
 
             int detectedId = Int32.Parse(camera.VisualizedTag.Value.ToString());
-            Phone phone = Surface.Phones.Where(p => p.Id == detectedId).FirstOrDefault();
+            Phone phone = Helper.Surface.Phones.Where(p => p.Id == detectedId).FirstOrDefault();
 
             if (phone != null)
             {      
@@ -151,7 +164,7 @@ namespace CameraVisualizations
                 
                 if (phone.Pined == true)
                 {
-                    Surface.UserControls.Remove(Surface.UserControls.Where(u => u.Phone == phone).FirstOrDefault());
+                    Helper.Surface.UserControls.Remove(Helper.Surface.UserControls.Where(u => u.Phone == phone && u is PhoneScatterViewItem).FirstOrDefault());
                     ucPhoneRep.btnPin.Visibility = Visibility.Hidden;
                     ucPhoneRep.btnUnpin.Visibility = Visibility.Visible;
                 }
@@ -168,7 +181,7 @@ namespace CameraVisualizations
         {
             CameraVisualization camera = (CameraVisualization)e.TagVisualization;
             int detectedId = Int32.Parse(camera.VisualizedTag.Value.ToString());
-            Phone phone = Surface.Phones.Where(p => p.Id == detectedId).FirstOrDefault();
+            Phone phone = Helper.Surface.Phones.Where(p => p.Id == detectedId).FirstOrDefault();
 
             if (phone != null && phone.Pined == true)
             {
@@ -178,6 +191,8 @@ namespace CameraVisualizations
 
                 PhoneScatterViewItem item = new PhoneScatterViewItem();
 
+                item.ManipulationStarted += new EventHandler<ManipulationStartedEventArgs>(item_ManipulationStarted);
+                item.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(item_ManipulationCompleted);
                 item.Phone = phone;
                 item.Content = x;
 
@@ -199,11 +214,28 @@ namespace CameraVisualizations
                 });
                 item.Loaded += loadedEventHandler;
 
-                Surface.UserControls.Add(item);
+                Helper.Surface.UserControls.Add(item);
 
+
+                //scatterView.ManipulationStarted += new EventHandler<ManipulationStartedEventArgs>(scatterView_ManipulationStarted);
+                //scatterView.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(scatterView_ManipulationCompleted);
                 //scatterView.Items.Add(item);
             }
         }
+
+        void item_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            int i = 1;
+            //throw new NotImplementedException();
+        }
+
+        void item_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            int b = 1;
+            //throw new NotImplementedException();
+        }
+
+       
 
     }
 }

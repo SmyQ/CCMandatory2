@@ -13,6 +13,8 @@ namespace CameraVisualizations.Utils
         {
             CanScale = false;
             Orientation = 0;
+            Width = 250;
+            Height = 250;
         }
     }
 }

@@ -66,6 +66,7 @@
       <DependentUpon>ucPhoto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\CustomScatterViewItem.cs" />
+    <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\PhotoScatterViewItem.cs" />
     <Compile Include="Utils\PhoneScatterViewItem.cs" />
     <Compile Include="Utils\Surface.cs" />
@@ -123,6 +124,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\cycle.png" />
     <Resource Include="Resources\pedo.jpg" />
     <Resource Include="Resources\iconHTC.png" />
     <Resource Include="Resources\iconSamsung.png" />
