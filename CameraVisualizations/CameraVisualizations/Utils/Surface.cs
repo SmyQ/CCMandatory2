@@ -25,7 +25,8 @@ namespace CameraVisualizations.Utils
                 Pined = false,
                 ImgSrc = "iconSamsung.png",
                 BrushColor = SurfaceColors.Accent1Brush,
-                IpAddr = "192.168.0.1"
+                IpAddr = "10.6.6.165",
+                Port = 7000
             }); 
 
             Phones.Add(new Phone() {
@@ -34,7 +35,8 @@ namespace CameraVisualizations.Utils
                 Pined = false,
                 ImgSrc = "iconHTC.png",
                 BrushColor = SurfaceColors.Accent2Brush,
-                IpAddr = "192.168.0.2"
+                IpAddr = "10.6.6.124",
+                Port = 8000
             });
         }
 

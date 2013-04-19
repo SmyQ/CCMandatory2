@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CameraVisualizations.Server;
+using Microsoft.Surface.Presentation.Controls;
 
 namespace CameraVisualizations.Utils
 {
@@ -16,5 +18,17 @@ namespace CameraVisualizations.Utils
                 return _surface ?? (_surface = new Surface());
             }
         }
+
+        private static NetworkDevice _networkDevice;
+
+        public static NetworkDevice NetworkDevice
+        {
+            get
+            {
+                return _networkDevice ?? (_networkDevice = new NetworkDevice());
+            }
+        }
+
+        public static ScatterView ScatterView { get; set; }
     }
 }

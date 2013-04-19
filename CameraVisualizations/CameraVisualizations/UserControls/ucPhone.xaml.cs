@@ -14,15 +14,18 @@ using System.Windows.Shapes;
 using CameraVisualizations.Utils;
 using CameraVisualizations.Interfaces;
 using CameraVisualizations.Providers;
+using System.ComponentModel;
+using System.Threading;
 
 namespace CameraVisualizations.UserControls
 {
-    /// <summary>
-    /// Interaction logic for ucPhone.xaml
-    /// </summary>
+    public delegate void CalledForImages(object sender);
+
     public partial class ucPhone : UserControl
     {
         public Phone Phone { get; set; }
+
+        public static event CalledForImages CalledForImagesEvent;
 
         public ucPhone()
         {
@@ -36,11 +39,53 @@ namespace CameraVisualizations.UserControls
 
             Phone.Pined = true;
 
+            
+
+            if (CalledForImagesEvent != null)
+                CalledForImagesEvent(this);
+
+
+            //BackgroundWorker bw = new BackgroundWorker();
+            
+            //bw.SetApartmentState(ApartmentState.STA);
+            //bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            //bw.RunWorkerAsync();
+
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+
+            t.Start();
+
+        }
+
+        public void ThreadProc() 
+        {     
+            Dispatcher.Invoke((Action)delegate() 
+            {
+                //for (int i = 1; i <= 10; i++)
+                //{
+                    Helper.NetworkDevice.GetPhotosFromDevice(Phone.IpAddr, Phone.Port);
+
+                    IPhotoProvider photoProvider = new AndroidPhotoProvider();
+                    foreach (PhotoScatterViewItem item in photoProvider.GetPhotos(Phone))
+                    {
+                        Helper.Surface.UserControls.Add(item);
+                    }
+                //}
+
+            });
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Helper.NetworkDevice.GetPhotosFromDevice(Phone.IpAddr, Phone.Port);
+
             IPhotoProvider photoProvider = new AndroidPhotoProvider();
-            foreach(PhotoScatterViewItem item in photoProvider.GetPhotos(Phone))
+            foreach (PhotoScatterViewItem item in photoProvider.GetPhotos(Phone))
             {
                 Helper.Surface.UserControls.Add(item);
             }
+
         }
 
         private void unpinClick(object sender, RoutedEventArgs e)
@@ -49,9 +94,6 @@ namespace CameraVisualizations.UserControls
             btnUnpin.Visibility = Visibility.Hidden;
 
             Phone.Pined = false;
-            //var ucToDel = Surface.UserControls.Where(u => u.Phone == Phone && u is PhoneScatterViewItem).FirstOrDefault();
-            //Surface.UserControls.Remove(ucToDel);
-
             List<CustomScatterViewItem> items = Helper.Surface.UserControls.Where(x => x.Phone == Phone).ToList();
 
             try
@@ -66,20 +108,6 @@ namespace CameraVisualizations.UserControls
             {
 
             }
-
-
-            
-
-            //try
-            //{
-            //    foreach (CustomScatterViewItem item in items)
-            //    {
-            //        Helper.Surface.UserControls.Remove(item);
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //}
         }
     }
 }

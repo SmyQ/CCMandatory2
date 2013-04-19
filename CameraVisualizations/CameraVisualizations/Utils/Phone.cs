@@ -14,6 +14,6 @@ namespace CameraVisualizations.Utils
         public Brush BrushColor { get; set; }
         public String ImgSrc { get; set; }
         public String IpAddr { get; set; }
-
+        public int Port { get; set; }
     }
 }

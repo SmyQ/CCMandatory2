@@ -38,6 +38,7 @@ namespace CameraVisualizations
             InitializeDefinitions();
 
             scatterView.ItemsSource = Helper.Surface.UserControls;
+            Helper.ScatterView = scatterView;
             
         }
 

@@ -59,6 +59,8 @@
     <Compile Include="Interfaces\ICustomScatterViewItem.cs" />
     <Compile Include="Interfaces\IPhotoProvider.cs" />
     <Compile Include="Providers\AndroidPhotoProvider.cs" />
+    <Compile Include="Providers\MockPhotoProvider.cs" />
+    <Compile Include="Server\NetworkDevice.cs" />
     <Compile Include="UserControls\ucPhone.xaml.cs">
       <DependentUpon>ucPhone.xaml</DependentUpon>
     </Compile>
